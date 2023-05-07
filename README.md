@@ -168,7 +168,7 @@ def plot_feature_importances(model):
     plt.ylim(-1, n_features)
     plt.show()
 ```
-However, SVC, KNN and Logistic Regression can't use `plot_feature_importances`. Because it doesn't have `model.feature_importances_` fuction. For SVC and Logistic Regression, I use `permutation_importance` from sklearn.inspection. 
+However, SVC, KNN and Logistic Regression can't use `plot_feature_importances`. Because it doesn't have `model.feature_importances_` fuction. Thus, I use `permutation_importance` from sklearn.inspection. 
 ```
 result = permutation_importance(clf, X_test, y_test, n_repeats=10, random_state=2023, n_jobs=-1)
 
@@ -178,19 +178,5 @@ ax.barh(range(X.shape[1]), result.importances_mean[sorted_idx])
 ax.set_yticks(range(X.shape[1]))
 ax.set_yticklabels(cancer.feature_names[sorted_idx])
 ax.set_xlabel('Permutation Importance')
-plt.show()
-```
-For KNN, I use `mutual_info_classif` from sklearn.feature_selection. 
-```
-mutual_info = mutual_info_classif(X_train, y_train)
-
-n_features = X.shape[1]
-indices = np.argsort(mutual_info)
-plt.barh(np.arange(n_features), mutual_info[indices], align='center')
-feature_names = np.array(cancer.feature_names)
-plt.yticks(np.arange(n_features), feature_names[indices])
-plt.xlabel("Mutual Information")
-plt.ylabel("Feature")
-plt.ylim(-1, n_features)
 plt.show()
 ```
