@@ -1,20 +1,8 @@
 # README for Breast Cancer Classification Project
-# Title
-
-![banner]()
-
-![badge]()
-![badge]()
-[![license](https://img.shields.io/github/license/:user/:repo.svg)](LICENSE)
-[![standard-readme compliant](https://img.shields.io/badge/readme%20style-standard-brightgreen.svg?style=flat-square)](https://github.com/RichardLitt/standard-readme)
-
-This is an example file with maximal choices selected.
-
-This is a long description.
+This repository presents a codebase for analyzing the Breast Cancer dataset from the sklearn library and developing a classification model to predict the malignancy status of a tumor. According to the problems, this project used six classification algorithms, namely Decision Tree, Random Forest, XGBoost, SVC, KNN, and Logistic Regression, were employed to evaluate the dataset's performance. Specifically, the models were trained using different ratios of training data, and tested by accurcy score, recall, precision and f1 score. Finallt, I use 0.1 testing size and 0.9 training size to find the top three important features for each classification algorithm were determined. 
 
 ## Table of Contents
-
-- [Security](#security)
+- [Description](#Description)
 - [Background](#background)
 - [Install](#install)
 - [Usage](#usage)
@@ -22,9 +10,35 @@ This is a long description.
 - [Contributing](#contributing)
 - [License](#license)
 
-## Security
+## Description
+This code evaluates a classification model on the Breast Cancer Wisconsin dataset. The dataset is loaded using the `load_breast_cancer` function from scikit-learn. The following metrics are computed:
+- Accuracy score
+- Recall score
+- F1 score
+- Precision score
+- Classification report
+The evaluation is performed using the `train_test_split` function from scikit-learn to split the data into training and testing sets.
 
-### Any optional sections
+### Libraries Used
+- scikit-learn
+- numpy
+- pandas
+- matplotlib
+- 
+### Functions Imported
+- accuracy_score
+- recall_score
+- f1_score
+- precision_score
+- classification_report
+- tree
+- RandomForestClassifier
+- XGBClassifier
+- svm
+- neighbors
+- LogisticRegression
+- permutation_importance
+- mutual_info_classif
 
 ## Background
 
