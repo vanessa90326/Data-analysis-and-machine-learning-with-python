@@ -3,7 +3,7 @@ This repository presents a codebase for analyzing the Breast Cancer dataset from
 
 ## Table of Contents
 - [Description](#Description)
-- [Background](#background)
+- [Model development and evaluation](#Model development and evaluation)
 - [Install](#install)
 - [Usage](#usage)
 - [API](#api)
@@ -160,11 +160,21 @@ def plot_ratio_perform(model, X, y, ratio=100):
   plt.show()
 ```
 
-## Install
-
-This module depends upon a knowledge of [Markdown]().
-
+## Find the top 3 features in each models
+Because I want to check whether one has breast cancer, I use precision to identify how many ratio is the best and the result is that trainning size = 0.9 and testing size = 0.1. <br>
+To find the top 3 feaures, creat ` plot_feature_importances` functon to plot the feature by `model.feature_importances_`.
 ```
+def plot_feature_importances(model):
+    n_features = cancer.data.shape[1]
+    importances = model.feature_importances_
+    indices = np.argsort(importances)
+    plt.barh(np.arange(n_features), importances[indices], align='center')
+    feature_names = np.array(cancer.feature_names)
+    plt.yticks(np.arange(n_features), feature_names[indices])
+    plt.xlabel("Feature importance")
+    plt.ylabel("Feature")
+    plt.ylim(-1, n_features)
+    plt.show()
 ```
 
 ### Any optional sections
