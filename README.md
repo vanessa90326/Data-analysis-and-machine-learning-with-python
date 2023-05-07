@@ -1,6 +1,6 @@
 # Data-analysis-and-machine-learning-with-python-HW2-RDADME
 
-## Breast Cancer Classification Metrics
+## Description
 
 This code evaluates a classification model on the Breast Cancer Wisconsin dataset. The dataset is loaded using the `load_breast_cancer` function from scikit-learn. The following metrics are computed:
 - Accuracy score
