@@ -1,15 +1,6 @@
 # README for Breast Cancer Classification
 This repository presents a codebase for analyzing the Breast Cancer dataset from the sklearn library and developing a classification model to predict the malignancy status of a tumor. According to the problems, this project used six classification algorithms, namely Decision Tree, Random Forest, XGBoost, SVC, KNN, and Logistic Regression, were employed to evaluate the dataset's performance. Specifically, the models were trained using different ratios of training data, and tested by accurcy score, recall, precision and f1 score. Finallt, I use 0.1 testing size and 0.9 training size to find the top three important features for each classification algorithm were determined. 
 
-## Table of Contents
-- [Description](#Description)
-- [Model development and evaluation](#Model development and evaluation)
-- [Install](#install)
-- [Usage](#usage)
-- [API](#api)
-- [Contributing](#contributing)
-- [License](#license)
-
 ## Description
 This code evaluates a classification model on the Breast Cancer Wisconsin dataset. The dataset is loaded using the `load_breast_cancer` function from scikit-learn. The following metrics are computed:
 - Accuracy score
@@ -162,7 +153,7 @@ def plot_ratio_perform(model, X, y, ratio=100):
 
 ## Find the top 3 features in each models
 Because I want to check whether one has breast cancer, I use precision to identify how many ratio is the best and the result is that trainning size = 0.9 and testing size = 0.1. <br>
-To find the top 3 feaures, creat ` plot_feature_importances` functon to plot the feature by `model.feature_importances_`.
+To find the top 3 feaures, creat `plot_feature_importances` functon to plot the feature by `model.feature_importances_`
 ```
 def plot_feature_importances(model):
     n_features = cancer.data.shape[1]
@@ -176,33 +167,45 @@ def plot_feature_importances(model):
     plt.ylim(-1, n_features)
     plt.show()
 ```
-
-### Any optional sections
-
-## Usage
-
+However, SVC, KNN and Logistic Regression can't use `plot_feature_importances`. Because it doesn't have `model.feature_importances_` fuction. For SVC, I use `permutation_importance` from sklearn.inspection. 
 ```
+result = permutation_importance(clf, X_test, y_test, n_repeats=10, random_state=2023, n_jobs=-1)
+
+fig, ax = plt.subplots(figsize=(10, 6))
+sorted_idx = result.importances_mean.argsort()
+ax.barh(range(X.shape[1]), result.importances_mean[sorted_idx])
+ax.set_yticks(range(X.shape[1]))
+ax.set_yticklabels(cancer.feature_names[sorted_idx])
+ax.set_xlabel('Permutation Importance')
+plt.show()
+```
+For KNN, I use `mutual_info_classif` from sklearn.feature_selection. 
+```
+mutual_info = mutual_info_classif(X_train, y_train)
+
+n_features = X.shape[1]
+indices = np.argsort(mutual_info)
+plt.barh(np.arange(n_features), mutual_info[indices], align='center')
+feature_names = np.array(cancer.feature_names)
+plt.yticks(np.arange(n_features), feature_names[indices])
+plt.xlabel("Mutual Information")
+plt.ylabel("Feature")
+plt.ylim(-1, n_features)
+plt.show()
+```
+There isn't feature score or measurement way of features in Logistic Regression, I use coefficient to represent the importances of features.
+```
+n_features = X.shape[1]
+importances = abs(clf.coef_[0])
+indices = np.argsort(importances)
+plt.barh(range(n_features), importances[indices])
+plt.yticks(range(n_features), cancer.feature_names[indices])
+plt.xlabel("Feature importance")
+plt.ylabel("Feature")
+plt.ylim(-1, n_features)
+plt.show()
 ```
 
-Note: The `license` badge image link at the top of this file should be updated with the correct `:user` and `:repo`.
-
-### Any optional sections
-
-## API
-
-### Any optional sections
-
-## More optional sections
-
-## Contributing
-
-See [the contributing file](CONTRIBUTING.md)!
-
-PRs accepted.
-
-Small note: If editing the Readme, please conform to the [standard-readme](https://github.com/RichardLitt/standard-readme) specification.
-
-### Any optional sections
 
 
 
