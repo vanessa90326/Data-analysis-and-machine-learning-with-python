@@ -43,20 +43,20 @@ The evaluation is performed using the `train_test_split` function from scikit-le
 ## Dataset analysis
 The code in main.ipynb performs an analysis of the Breast Cancer dataset. It imports the dataset using the load_breast_cancer() function from the sklearn.datasets module and prints some basic information about the dataset:
 
-ˋinstances = len (cancer.data)
+` instances = len (cancer.data)
 features = len (cancer.feature_names)
 targets = len(cancer.target_names)
 
 print("Number of instances: ", instances)
 print("Number of features: ", features)
-print("Number of targets(result): ", targets)ˋ
+print("Number of targets(result): ", targets)` 
 
 The number of instances (data points) in the dataset
 The number of features (independent variables) in the dataset
 The number of targets (dependent variables) in the dataset
 
 Additionally, it checks whether the dataset is imbalanced by counting the number of samples for each class and plotting the results using the matplotlib library.
-ˋn_benign = len(cancer.target[cancer.target == 0])
+` n_benign = len(cancer.target[cancer.target == 0])
 n_malignant = len(cancer.target[cancer.target == 1])
 labels = ["Benign", "Malignant"]
 values = [n_benign, n_malignant]
@@ -64,7 +64,7 @@ plt.bar(labels, values)
 plt.title("Breast Cancer Dataset")
 plt.xlabel("Class")
 plt.ylabel("Number of samples")
-plt.show()ˋ
+plt.show()` 
 
 
 
