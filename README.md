@@ -168,7 +168,7 @@ def plot_feature_importances(model):
     plt.ylim(-1, n_features)
     plt.show()
 ```
-However, SVC, KNN and Logistic Regression can't use `plot_feature_importances`. Because it doesn't have `model.feature_importances_` fuction. For SVC, I use `permutation_importance` from sklearn.inspection. 
+However, SVC, KNN and Logistic Regression can't use `plot_feature_importances`. Because it doesn't have `model.feature_importances_` fuction. For SVC and Logistic Regression, I use `permutation_importance` from sklearn.inspection. 
 ```
 result = permutation_importance(clf, X_test, y_test, n_repeats=10, random_state=2023, n_jobs=-1)
 
@@ -194,19 +194,3 @@ plt.ylabel("Feature")
 plt.ylim(-1, n_features)
 plt.show()
 ```
-There isn't feature score or measurement way of features in Logistic Regression, I use coefficient to represent the importances of features.
-```
-n_features = X.shape[1]
-importances = abs(clf.coef_[0])
-indices = np.argsort(importances)
-plt.barh(range(n_features), importances[indices])
-plt.yticks(range(n_features), cancer.feature_names[indices])
-plt.xlabel("Feature importance")
-plt.ylabel("Feature")
-plt.ylim(-1, n_features)
-plt.show()
-```
-
-
-
-
