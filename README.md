@@ -61,7 +61,8 @@ plt.xlabel("Class")
 plt.ylabel("Number of samples")
 plt.show()
 ```
-!(/Users/vanessa/Downloads/balance.png)
+![](https://drive.google.com/uc?export=view&id=1B4DV-XfOzsRPufdKNg3SqXVWKOHkwDam)
+
 
 ## Model development and evaluation
 The code in main.ipynb builds and evaluates a classification model using the Breast Cancer dataset. It splits the dataset into training and testing sets using the  `train_test_split() ` from the sklearn.model_selection module. It then creates a classification model using the sklearn library and fits it to the training data.
