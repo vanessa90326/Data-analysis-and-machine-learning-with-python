@@ -17,6 +17,7 @@ This code evaluates a classification model on the Breast Cancer Wisconsin datase
 - F1 score
 - Precision score
 - Classification report
+<br>
 The evaluation is performed using the `train_test_split` function from scikit-learn to split the data into training and testing sets.
 
 ### Libraries Used
@@ -70,9 +71,93 @@ plt.ylabel("Number of samples")
 plt.show()
 ```
 
+## Model development and evaluation
+The code in main.ipynb builds and evaluates a classification model using the Breast Cancer dataset. It splits the dataset into training and testing sets using the  `train_test_split() ` from the sklearn.model_selection module. It then creates a classification model using the sklearn library and fits it to the training data.
 
+The `ratio_perform()` and `plot_ratio_perform()` functions evaluate the performance of the classification model for different train-test ratios, calculate the accuracy, recall, precision, and F1-score of the model on the training and testing sets, and plot the results. These functions are used to find the optimal train-test ratio for the model.
+```
+def ratio_perform(model, X, y, ratio=100):
+  ratiovalues = [i for i in range(5, ratio, 5)]
+  train_scores = []
+  test_scores = []
+  for i in ratiovalues:
+    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size = i/100, random_state=2023)    
+    clf = model
+    clf.fit(X_train, y_train)
+    y_pred_train = clf.predict(X_train) 
+    train_acc = accuracy_score(y_pred_train, y_train)
+    
+    y_pred_test = clf.predict(X_test) 
+    test_acc = accuracy_score(y_pred_test, y_test)
+    
+    train_report = classification_report(y_train, y_pred_train)
+    test_report = classification_report(y_test, y_pred_test)
+    
+    print('>%d, train:\n%s\ntest:\n%s' % (i, train_report, test_report))
 
-### Any optional sections
+    train_scores.append(train_acc)
+    test_scores.append(test_acc)
+```
+
+```
+def plot_ratio_perform(model, X, y, ratio=100):
+  ratiovalues = [i for i in range(5, ratio, 5)]
+  train_scores, test_scores = [], []
+  train_recall, test_recall = [], []
+  train_precision, test_precision = [], []
+  train_f1, test_f1 = [], []
+  
+  for i in ratiovalues:
+    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=i/100, random_state=2023)
+    clf = model
+    clf.fit(X_train, y_train)
+    y_train_pred = clf.predict(X_train)
+    y_test_pred = clf.predict(X_test)
+    
+    train_scores.append(accuracy_score(y_train, y_train_pred))
+    test_scores.append(accuracy_score(y_test, y_test_pred))
+    train_recall.append(recall_score(y_train, y_train_pred))
+    test_recall.append(recall_score(y_test, y_test_pred))
+    train_precision.append(precision_score(y_train, y_train_pred))
+    test_precision.append(precision_score(y_test, y_test_pred))
+    train_f1.append(f1_score(y_train, y_train_pred))
+    test_f1.append(f1_score(y_test, y_test_pred))
+
+  max_acc, max_acc_ratio = max((val, ratio) for ratio, val in zip(ratiovalues, test_scores))
+  max_rec, max_rec_ratio = max((val, ratio) for ratio, val in zip(ratiovalues, test_recall))
+  max_prec, max_prec_ratio = max((val, ratio) for ratio, val in zip(ratiovalues, test_precision))
+  max_f1, max_f1_ratio = max((val, ratio) for ratio, val in zip(ratiovalues, test_f1))
+
+  print(f"Max accuracy: {max_acc:.3f}, at test_size {max_acc_ratio/100}")
+  print(f"Max recall: {max_rec:.3f}, at test_size {max_rec_ratio/100}")
+  print(f"Max precision: {max_prec:.3f}, at test_size {max_prec_ratio/100}")
+  print(f"Max F1-score: {max_f1:.3f}, at test_size {max_f1_ratio/100}")
+
+  fig, axs = plt.subplots(2, 2, figsize=(10, 8))
+
+  axs[0, 0].plot(ratiovalues, train_scores, '-o', label='Train')
+  axs[0, 0].plot(ratiovalues, test_scores, '-o', label='Test')
+  axs[0, 0].set_title('Accuracy')
+  axs[0, 0].legend()
+
+  axs[0, 1].plot(ratiovalues, train_recall, '-o', label='Train')
+  axs[0, 1].plot(ratiovalues, test_recall, '-o', label='Test')
+  axs[0, 1].set_title('Recall')
+  axs[0, 1].legend()
+
+  axs[1, 0].plot(ratiovalues, train_precision, '-o', label='Train')
+  axs[1, 0].plot(ratiovalues, test_precision, '-o', label='Test')
+  axs[1, 0].set_title('Precision')
+  axs[1, 0].legend()
+
+  axs[1, 1].plot(ratiovalues, train_f1, '-o', label='Train')
+  axs[1, 1].plot(ratiovalues, test_f1, '-o', label='Test')
+  axs[1, 1].set_title('F1-score')
+  axs[1, 1].legend()
+
+  plt.tight_layout()
+  plt.show()
+```
 
 ## Install
 
