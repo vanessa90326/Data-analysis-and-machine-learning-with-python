@@ -1,28 +1,68 @@
-# Data-analysis-and-machine-learning-with-python-HW2-RDADME
+# README for Breast Cancer Classification Project
+# Title
 
-## Description
+![banner]()
 
-This code evaluates a classification model on the Breast Cancer Wisconsin dataset. The dataset is loaded using the `load_breast_cancer` function from scikit-learn. The following metrics are computed:
-- Accuracy score
-- Recall score
-- F1 score
-- Precision score
-- Classification report
+![badge]()
+![badge]()
+[![license](https://img.shields.io/github/license/:user/:repo.svg)](LICENSE)
+[![standard-readme compliant](https://img.shields.io/badge/readme%20style-standard-brightgreen.svg?style=flat-square)](https://github.com/RichardLitt/standard-readme)
 
-The evaluation is performed using the `train_test_split` function from scikit-learn to split the data into training and testing sets.
+This is an example file with maximal choices selected.
 
-### Libraries Used
-- scikit-learn
-- numpy
-- pandas
-- matplotlib
+This is a long description.
 
-### Functions Imported
-- accuracy_score
-- recall_score
-- f1_score
-- precision_score
-- classification_report
+## Table of Contents
 
-### Dataset Used
-- Breast Cancer Wisconsin (loaded using `load_breast_cancer` from scikit-learn)
+- [Security](#security)
+- [Background](#background)
+- [Install](#install)
+- [Usage](#usage)
+- [API](#api)
+- [Contributing](#contributing)
+- [License](#license)
+
+## Security
+
+### Any optional sections
+
+## Background
+
+### Any optional sections
+
+## Install
+
+This module depends upon a knowledge of [Markdown]().
+
+```
+```
+
+### Any optional sections
+
+## Usage
+
+```
+```
+
+Note: The `license` badge image link at the top of this file should be updated with the correct `:user` and `:repo`.
+
+### Any optional sections
+
+## API
+
+### Any optional sections
+
+## More optional sections
+
+## Contributing
+
+See [the contributing file](CONTRIBUTING.md)!
+
+PRs accepted.
+
+Small note: If editing the Readme, please conform to the [standard-readme](https://github.com/RichardLitt/standard-readme) specification.
+
+### Any optional sections
+
+
+
