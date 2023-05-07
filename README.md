@@ -56,7 +56,7 @@ The number of features (independent variables) in the dataset
 The number of targets (dependent variables) in the dataset
 
 Additionally, it checks whether the dataset is imbalanced by counting the number of samples for each class and plotting the results using the matplotlib library.
-` n_benign = len(cancer.target[cancer.target == 0])
+``` n_benign = len(cancer.target[cancer.target == 0])
 n_malignant = len(cancer.target[cancer.target == 1])
 labels = ["Benign", "Malignant"]
 values = [n_benign, n_malignant]
@@ -64,7 +64,7 @@ plt.bar(labels, values)
 plt.title("Breast Cancer Dataset")
 plt.xlabel("Class")
 plt.ylabel("Number of samples")
-plt.show()` 
+plt.show()```
 
 
 
