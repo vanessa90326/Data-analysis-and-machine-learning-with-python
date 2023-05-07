@@ -17,7 +17,7 @@ This code evaluates a classification model on the Breast Cancer Wisconsin datase
 - F1 score
 - Precision score
 - Classification report
-<br>
+
 The evaluation is performed using the `train_test_split` function from scikit-learn to split the data into training and testing sets.
 
 ### Libraries Used
@@ -70,11 +70,12 @@ plt.xlabel("Class")
 plt.ylabel("Number of samples")
 plt.show()
 ```
+!(/Users/vanessa/Downloads/balance.png)
 
 ## Model development and evaluation
 The code in main.ipynb builds and evaluates a classification model using the Breast Cancer dataset. It splits the dataset into training and testing sets using the  `train_test_split() ` from the sklearn.model_selection module. It then creates a classification model using the sklearn library and fits it to the training data.
 
-The `ratio_perform()` and `plot_ratio_perform()` functions evaluate the performance of the classification model for different train-test ratios, calculate the accuracy, recall, precision, and F1-score of the model on the training and testing sets, and plot the results. These functions are used to find the optimal train-test ratio for the model.
+The `ratio_perform()` and `plot_ratio_perform()` functions evaluate the performance of the classification model for different train-test ratios, calculate the accuracy, recall, precision, and f1 score of the model on the training and testing sets, and plot the results. These functions are used to find the optimal train-test ratio for the model.
 ```
 def ratio_perform(model, X, y, ratio=100):
   ratiovalues = [i for i in range(5, ratio, 5)]
